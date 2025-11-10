@@ -23,11 +23,12 @@
             DESCRIPTION VARCHAR2(400) NOT NULL,
             RELEASE_DATE DATE NOT NULL);
 
-    -- Add Check Constraints
+    -- Add Check Constraints "Create check constraint on rating field in movie table to limit rating values to 'G', 'PG', 'R', 'PG13'"
     ALTER TABLE MOVIES
     ADD CONSTRAINT chk_movies_rating 
     CHECK (RATING IN ('G', 'PG', 'R', 'PG13')); -- [cite: 53]
 
+    -- Create check constraint on category field in movie table to limit categories to 'DRAMA', 'COMEDY', 'ACTION', 'CHILD', 'SCIFI', 'DOCUMENTARY'
     ALTER TABLE MOVIES
     ADD CONSTRAINT chk_movies_category 
     CHECK (CATEGORY IN ('DRAMA', 'COMEDY', 'ACTION', 'CHILD', 'SCIFI', 'DOCUMENTARY')); -- [cite: 54]
@@ -92,7 +93,7 @@
     ADD CONSTRAINT fk_star_movies FOREIGN KEY (TITLE_ID)
     REFERENCES MOVIES(TITLE_ID);
 
--- Notes: Verify Your Constraints
+-- "Run queries from the data dictionaries for the above constraints."
 SELECT constraint_name, table_name, constraint_type
 FROM user_constraints
 WHERE table_name IN (
@@ -103,6 +104,5 @@ WHERE table_name IN (
     'ACTORS', 
     'STAR_BILLINGS'
 );
-
 
     
