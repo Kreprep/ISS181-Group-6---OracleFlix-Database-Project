@@ -1,97 +1,97 @@
 -- 1. CUSTOMERS Table Constraints
     -- Add Primary Key
-    ALTER TABLE CUSTOMERS
-    ADD CONSTRAINT pk_customers PRIMARY KEY (CUSTOMER_ID);
+    ALTER TABLE customers
+    ADD CONSTRAINT pk_customers PRIMARY KEY (customer_id);
 
     -- Add Not Null Constraints
-    ALTER TABLE CUSTOMERS
-    MODIFY (LAST_NAME NOT NULL,
-            FIRST_NAME NOT NULL,
-            HOME_PHONE NOT NULL,
-            ADDRESS NOT NULL,
-            CITY NOT NULL,
-            STATE NOT NULL);
+    ALTER TABLE customers
+    MODIFY (last_name NOT NULL,
+            first_name NOT NULL,
+            home_phone NOT NULL,
+            address NOT NULL,
+            city NOT NULL,
+            state NOT NULL);
 
 -- 2. MOVIES Table Constraints
     -- Add Primary Key
-    ALTER TABLE MOVIES
-    ADD CONSTRAINT pk_movies PRIMARY KEY (TITLE_ID);
+    ALTER TABLE movies
+    ADD CONSTRAINT pk_movies PRIMARY KEY (title_id);
 
     -- Add Not Null Constraints
-    ALTER TABLE MOVIES
-    MODIFY (TITLE NOT NULL,
-            DESCRIPTION NOT NULL,
-            RELEASE_DATE NOT NULL);
+    ALTER TABLE movies
+    MODIFY (title NOT NULL,
+            description NOT NULL,
+            release_date NOT NULL);
 
     -- Add Check Constraints "Create check constraint on rating field in movie table to limit rating values to 'G', 'PG', 'R', 'PG13'"
-    ALTER TABLE MOVIES
+    ALTER TABLE movies
     ADD CONSTRAINT chk_movies_rating 
-    CHECK (RATING IN ('G', 'PG', 'R', 'PG13'));
+    CHECK (rating IN ('G', 'PG', 'R', 'PG13')); 
 
     -- Create check constraint on category field in movie table to limit categories to 'DRAMA', 'COMEDY', 'ACTION', 'CHILD', 'SCIFI', 'DOCUMENTARY'
-    ALTER TABLE MOVIES
+    ALTER TABLE movies
     ADD CONSTRAINT chk_movies_category 
     CHECK (CATEGORY IN ('DRAMA', 'COMEDY', 'ACTION', 'CHILD', 'SCIFI', 'DOCUMENTARY')); 
 
 -- 3. MEDIA Table Constraints
     -- Add Primary Key
-    ALTER TABLE MEDIA
-    ADD CONSTRAINT pk_media PRIMARY KEY (MEDIA_ID);
+    ALTER TABLE media
+    ADD CONSTRAINT pk_media PRIMARY KEY (media_id);
 
     -- Add Not Null Constraints
-    ALTER TABLE MEDIA
-    MODIFY (FORMAT NOT NULL,
-            TITLE_ID NOT NULL);
+    ALTER TABLE media
+    MODIFY (format NOT NULL,
+            title_id NOT NULL);
 
     -- Add Foreign Key
-    ALTER TABLE MEDIA
-    ADD CONSTRAINT fk_media_movies FOREIGN KEY (TITLE_ID)
-    REFERENCES MOVIES(TITLE_ID);
+    ALTER TABLE media
+    ADD CONSTRAINT fk_media_movies FOREIGN KEY (title_id)
+    REFERENCES movies(title_id);
 
 -- 4. RENTAL_HISTORY Table Constraints
     -- Add Composite Primary Key
-    ALTER TABLE RENTAL_HISTORY
-    ADD CONSTRAINT pk_rental_history PRIMARY KEY (MEDIA_ID, RENTAL_DATE); 
+    ALTER TABLE rental_history
+    ADD CONSTRAINT pk_rental_history PRIMARY KEY (media_id, rental_date);
 
     -- Add Not Null Constraint
-    ALTER TABLE RENTAL_HISTORY
-    MODIFY (CUSTOMER_ID NOT NULL);
+    ALTER TABLE rental_history
+    MODIFY (customer_id NOT NULL);
 
     -- Add Foreign Keys
-    ALTER TABLE RENTAL_HISTORY
-    ADD CONSTRAINT fk_rental_media FOREIGN KEY (MEDIA_ID)
-    REFERENCES MEDIA(MEDIA_ID); 
+    ALTER TABLE rental_history
+    ADD CONSTRAINT fk_rental_media FOREIGN KEY (media_id)
+    REFERENCES media(media_id); 
 
-    ALTER TABLE RENTAL_HISTORY
-    ADD CONSTRAINT fk_rental_customers FOREIGN KEY (CUSTOMER_ID)
-    REFERENCES CUSTOMERS(CUSTOMER_ID);
+    ALTER TABLE rental_history
+    ADD CONSTRAINT fk_rental_customers FOREIGN KEY (customer_id)
+    REFERENCES customers(customer_id); 
 
 -- 5. ACTORS Table Constraints
     -- Add Primary Key
-    ALTER TABLE ACTORS
-    ADD CONSTRAINT pk_actors PRIMARY KEY (ACTOR_ID);
+    ALTER TABLE actors
+    ADD CONSTRAINT pk_actors PRIMARY KEY (actor_id);
 
     -- Add Not Null Constraints
-    ALTER TABLE ACTORS
-    MODIFY (STAGE_NAME NOT NULL,
-            FIRST_NAME NOT NULL,
-            LAST_NAME NOT NULL,
-            BIRTH_DATE NOT NULL);
+    ALTER TABLE actors
+    MODIFY (stage_name NOT NULL,
+            first_name NOT NULL,
+            last_name NOT NULL,
+            birth_date NOT NULL);
 
 
 -- 6. STAR_BILLINGS Table Constraints
     -- Add Composite Primary Key
-    ALTER TABLE STAR_BILLINGS
-    ADD CONSTRAINT pk_star_billings PRIMARY KEY (ACTOR_ID, TITLE_ID);
+    ALTER TABLE star_billings
+    ADD CONSTRAINT pk_star_billings PRIMARY KEY (actor_id, title_id);
 
     -- Add Foreign Keys
-    ALTER TABLE STAR_BILLINGS
-    ADD CONSTRAINT fk_star_actors FOREIGN KEY (ACTOR_ID)
-    REFERENCES ACTORS(ACTOR_ID);
+    ALTER TABLE star_billings
+    ADD CONSTRAINT fk_star_actors FOREIGN KEY (actor_id)
+    REFERENCES actors(actor_id);
 
-    ALTER TABLE STAR_BILLINGS
-    ADD CONSTRAINT fk_star_movies FOREIGN KEY (TITLE_ID)
-    REFERENCES MOVIES(TITLE_ID);
+    ALTER TABLE star_billings
+    ADD CONSTRAINT fk_star_movies FOREIGN KEY (title_id)
+    REFERENCES movies(title_id);
 
 -- "Run queries from the data dictionaries for the above constraints."
 SELECT constraint_name, table_name, constraint_type
@@ -104,5 +104,3 @@ WHERE table_name IN (
     'ACTORS', 
     'STAR_BILLINGS'
 );
-
-    
