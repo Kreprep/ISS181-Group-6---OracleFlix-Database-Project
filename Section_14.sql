@@ -31,7 +31,7 @@
     -- Create check constraint on category field in movie table to limit categories to 'DRAMA', 'COMEDY', 'ACTION', 'CHILD', 'SCIFI', 'DOCUMENTARY'
     ALTER TABLE movies
     ADD CONSTRAINT chk_movies_category 
-    CHECK (CATEGORY IN ('DRAMA', 'COMEDY', 'ACTION', 'CHILD', 'SCIFI', 'DOCUMENTARY')); 
+    CHECK (category IN ('DRAMA', 'COMEDY', 'ACTION', 'CHILD', 'SCIFI', 'DOCUMENTARY')); 
 
 -- 3. MEDIA Table Constraints
     -- Add Primary Key
