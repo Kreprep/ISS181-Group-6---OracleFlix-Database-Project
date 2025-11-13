@@ -3,6 +3,7 @@
 INSERT INTO customers (customer_id, last_name, first_name, home_phone, address, city, state, email, cell_phone) 
 VALUES (customers_seq.NEXTVAL, 'Palombo', 'Lisa', '716-270-2669', '123 Main St', 'Buffalo', 'NY', 'palombo@ecc.edu', '716-555-1212');
 
+-- Next 6 inserts are AI Generated. For references
 INSERT INTO customers (customer_id, last_name, first_name, home_phone, address, city, state, email, cell_phone)
 VALUES (customers_seq.NEXTVAL, 'Anderson', 'James', '213-234-5678', '123 Maple Street', 'Los Angeles', 'CA', 'james.anderson@email.com', '310-987-6543');
 
