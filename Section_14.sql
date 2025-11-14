@@ -1,3 +1,8 @@
+-- Section 14 - Creating and Managing Constraints
+
+-- REQUIREMENT: Create primary key (PK) and foreign key (FK) constraints as needed per ERD
+-- REQUIREMENT: Create not null (NN) constraints where necessary as per ERD
+
 -- 1. CUSTOMERS Table Constraints
     -- Add Primary Key
     ALTER TABLE CUSTOMERS
@@ -23,12 +28,13 @@
             DESCRIPTION NOT NULL,
             RELEASE_DATE NOT NULL);
 
-    -- Add Check Constraints "Create check constraint on rating field in movie table to limit rating values to 'G', 'PG', 'R', 'PG13'"
+    -- Add Check Constraints
+    -- REQUIREMENT: Create check constraint on rating field in movie table to limit rating values to 'G', 'PG', 'R', 'PG13'
     ALTER TABLE MOVIES
     ADD CONSTRAINT chk_movies_rating 
     CHECK (RATING IN ('G', 'PG', 'R', 'PG13'));
 
-    -- Create check constraint on category field in movie table to limit categories to 'DRAMA', 'COMEDY', 'ACTION', 'CHILD', 'SCIFI', 'DOCUMENTARY'
+    -- REQUIREMENT: Create check constraint on category field in movie table to limit categories to 'DRAMA', 'COMEDY', 'ACTION', 'CHILD', 'SCIFI', 'DOCUMENTARY'
     ALTER TABLE MOVIES
     ADD CONSTRAINT chk_movies_category 
     CHECK (CATEGORY IN ('DRAMA', 'COMEDY', 'ACTION', 'CHILD', 'SCIFI', 'DOCUMENTARY')); 
@@ -93,7 +99,9 @@
     ADD CONSTRAINT fk_star_movies FOREIGN KEY (TITLE_ID)
     REFERENCES MOVIES(TITLE_ID);
 
--- "Run queries from the data dictionaries for the above constraints."
+
+
+-- REQUIREMENT: Run queries from the data dictionaries for the above constraints.
 SELECT constraint_name, table_name, constraint_type
 FROM user_constraints
 WHERE table_name IN (

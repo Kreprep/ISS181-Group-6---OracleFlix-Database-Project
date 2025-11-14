@@ -1,16 +1,20 @@
--- section 15
+-- Section 15 - Creating and Managing Views
+
+-- REQUIREMENT: Create a view called TITLE_UNAVAIL to show the movie titles and media_id of the media not returned yet.
+-- REQUIREMENT: The view should not allow any DML operations.
 CREATE OR REPLACE VIEW TITLE_UNAVAIL AS
 SELECT 
-    m.title,
-    me.media_id
+    M.TITLE,
+    ME.MEDIA_ID
 FROM 
-    movies m
+    MOVIES M
 JOIN 
-    media me ON m.title_id = me.title_id
+    MEDIA ME ON M.TITLE_ID = ME.TITLE_ID
 JOIN 
-    rental_history r ON me.media_id = r.media_id
+    RENTAL_HISTORY R ON ME.MEDIA_ID = R.MEDIA_ID
 WHERE 
-    r.return_date IS NULL
+    R.RETURN_DATE IS NULL
 WITH READ ONLY;
 
+-- REQUIREMENT: Run a SELECT * for the view (after data has been added in later step)
 SELECT * FROM TITLE_UNAVAIL; 
